@@ -89,6 +89,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 		System.out.print("\npostorder traversal\n");
 		this.postorder();
+
+		System.out.println();
 	}
 
 	public static void main(String[] args) {
@@ -101,5 +103,31 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 
 		myTree.print3Orders();
+
+		// now for postfix, go left to right, putting stuff on the stack
+		// when we get 2 numbers followed by an operator,
+		// we calculate and put the result back on the stack
+		// original equation
+		// 48 7 2 % - 24 / 18 5 2 * - 12 + *
+		//
+		// 48 7 2 % (stop) - 24 / 18 5 2 * - 12 + *
+		// 48 1 - (stop) 24 / 18 5 2 * - 12 + *
+		// 47 24 / (stop) 18 5 2 * - 12 + *
+		// now since integer and float will branch here, i need to do it twice,
+		// int: 1 18 5 2 * (stop) - 12 + *
+		// float: 1.958 18 5 2 * (stop) - 12 + *
+		//
+		// int: 1 18 10 - (stop) 12 + *
+		// float: 1.958 18 10 - (stop) 12 + *
+		//
+		// int: 1 8 12 + (stop) *
+		// float: 1.958 8 12 + (stop) *
+		//
+		// int: 1 20 * (stop)
+		// float: 1.958 20 * (stop)
+		//
+		// int: 20
+		// float: 39.16
+		// tada
 	}
 }
