@@ -16,7 +16,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 	}
 
-	// Public insert method
+	// wrapper insert method
 	public void insert(T value) {
 		root = insertRecursive(root, value);
 	}
@@ -30,10 +30,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 		if (cmp < 0) {
 			current.left = insertRecursive(current.left, value);
-		} else if (cmp > 0) {
+		} else if (cmp >= 0) {
 			current.right = insertRecursive(current.right, value);
 		}
-		// If equal, do nothing (or handle duplicates however you want)
 
 		return current;
 	}
